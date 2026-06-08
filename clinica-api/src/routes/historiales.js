@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     // Paso 4: responder con el documento insertado
     return res.status(201).json(resultado);
   } catch (err) {
-    // Error de validación (normalizarHistorialClinico o Mongoose)
+    // Error de validacion (normalizarHistorialClinico o Mongoose)
     if (
       err.name === 'ValidationError' ||
       err.message.includes('Campos obligatorios') ||
@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
 
 /**
  * GET /api/historiales/paciente/:id
- * RF-08: Consultar historial clínico completo de un paciente (cronológico)
+ * RF-08: Consultar historial clinico completo de un paciente (cronologico)
  */
 router.get('/paciente/:id', async (req, res) => {
   const pacienteId = parseInt(req.params.id, 10);

@@ -27,7 +27,7 @@ function normalizarHistorialClinico(doc) {
     throw new Error(`Campos obligatorios faltantes: ${faltantes.join(', ')}`);
   }
 
-  // --- Normalización de tipos numéricos ---
+  // --- Normalizacion de tipos numericos ---
   const camposNumericos = ['cita_id', 'paciente_id', 'medico_id'];
   for (const campo of camposNumericos) {
     const valor = Number(doc[campo]);
@@ -37,7 +37,7 @@ function normalizarHistorialClinico(doc) {
     doc[campo] = valor;
   }
 
-  // --- Normalización de strings ---
+  // --- Normalizacion de strings ---
   if (doc.especialidad) {
     doc.especialidad = doc.especialidad.trim();
   }
@@ -54,7 +54,7 @@ function normalizarHistorialClinico(doc) {
     doc.notas_adicionales = doc.notas_adicionales.trim();
   }
 
-  // --- Normalización de fechas ---
+  // --- Normalizacion de fechas ---
   if (doc.fecha_consulta) {
     const fecha = new Date(doc.fecha_consulta);
     if (isNaN(fecha.getTime())) {
@@ -72,7 +72,7 @@ function normalizarHistorialClinico(doc) {
     doc.fecha_nacimiento_paciente = fecha;
   }
 
-  // --- Normalización de signos vitales ---
+  // --- Normalizacion de signos vitales ---
   if (doc.signos_vitales && typeof doc.signos_vitales === 'object') {
     const camposSV = [
       'presion_sistolica',
@@ -97,7 +97,7 @@ function normalizarHistorialClinico(doc) {
     }
   }
 
-  // --- Normalización de diagnósticos ---
+  // --- Normalizacion de diagnosticos ---
   if (doc.diagnosticos && Array.isArray(doc.diagnosticos)) {
     const tiposValidos = ['principal', 'secundario', 'presuntivo'];
     doc.diagnosticos = doc.diagnosticos.map((d, i) => {
@@ -115,7 +115,7 @@ function normalizarHistorialClinico(doc) {
     });
   }
 
-  // --- Normalización de medicamentos ---
+  // --- Normalizacion de medicamentos ---
   if (doc.medicamentos && Array.isArray(doc.medicamentos)) {
     doc.medicamentos = doc.medicamentos.map((m) => ({
       ...m,
@@ -127,7 +127,7 @@ function normalizarHistorialClinico(doc) {
     }));
   }
 
-  // --- Normalización de exámenes solicitados ---
+  // --- Normalizacion de examenes solicitados ---
   if (doc.examenes_solicitados && Array.isArray(doc.examenes_solicitados)) {
     const urgenciasValidas = ['rutina', 'urgente', 'stat'];
     doc.examenes_solicitados = doc.examenes_solicitados.map((e, i) => {

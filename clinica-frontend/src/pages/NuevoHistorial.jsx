@@ -345,7 +345,7 @@ export default function NuevoHistorial() {
               </div>
             </div>
 
-            {/* Diagnóstico Principal */}
+            {/* Diagnostico Principal */}
             <h3>Diagnóstico Principal</h3>
             <div className="section-divider"></div>
             <div className="form-grid">

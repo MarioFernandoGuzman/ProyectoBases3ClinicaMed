@@ -1,12 +1,12 @@
 /**
- * Pipelines de aggregation para la colección historiales_clinicos.
+ * Pipelines de aggregation para la coleccion historiales_clinicos.
  *
- * Cada pipeline se exporta como una función que retorna el array de stages,
- * para que `hace3Meses` se calcule al momento de la ejecución.
+ * Cada pipeline se exporta como una funcion que retorna el array de stages,
+ * para que `hace3Meses` se calcule al momento de la ejecucion.
  */
 
 /**
- * Top 5 diagnósticos por especialidad en los últimos 3 meses.
+ * Top 5 diagnosticos por especialidad en los ultimos 3 meses.
  */
 function pipelineTopDiagnosticos() {
   const hace3Meses = new Date();

@@ -10,7 +10,7 @@ const router = Router();
 router.post('/', async (req, res) => {
   const { factura_id, monto, metodo_pago, referencia, usuario_id } = req.body;
 
-  // Validación básica
+  // Validacion basica
   if (!factura_id || !monto || !metodo_pago || !usuario_id) {
     return res.status(400).json({
       error: 'Campos requeridos: factura_id, monto, metodo_pago, usuario_id',

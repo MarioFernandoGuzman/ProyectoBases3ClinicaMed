@@ -5,7 +5,7 @@ const router = Router();
 
 /**
  * GET /api/pacientes/:id/saldo
- * Ejecuta la función escalar saldo_paciente().
+ * Ejecuta la funcion escalar saldo_paciente().
  */
 router.get('/:id/saldo', async (req, res) => {
   const pacienteId = parseInt(req.params.id, 10);

@@ -1,9 +1,9 @@
 require('dotenv').config();
 const { Client } = require('pg');
 const { MongoClient } = require('mongodb');
-const { fakerES: faker } = require('@faker-js/faker'); // Usando Faker en español
+const { fakerES: faker } = require('@faker-js/faker'); // Usando Faker en espanol
 
-// Datos médicos realistas por especialidad
+// Datos medicos realistas por especialidad
 const datosPorEspecialidad = {
     "Cardiología": {
         diagnosticos: [
@@ -155,7 +155,7 @@ async function seedDatabase() {
             medicosNombres.push(`Dr(a). ${nombres} ${apellidos}`);
         }
 
-        // Horarios para los médicos
+        // Horarios para los medicos
         for (const mId of medicosIds) {
             for (let d = 1; d <= 5; d++) {
                 await pgClient.query(
@@ -173,9 +173,9 @@ async function seedDatabase() {
         for (let i = 0; i < 30; i++) {
             const pNombre = faker.person.firstName();
             const pApellido = faker.person.lastName();
-            // Edades variadas: 10 niños, 10 adultos, 10 adultos mayores para que el reporte de Signos Vitales sea rico
+            // Edades variadas: 10 ninos, 10 adultos, 10 adultos mayores para que el reporte de Signos Vitales sea rico
             let minAge = 5, maxAge = 80;
-            if (i < 10) { minAge = 1; maxAge = 17; } // Pediátricos
+            if (i < 10) { minAge = 1; maxAge = 17; } // Pediatricos
             else if (i < 20) { minAge = 18; maxAge = 49; } // Adultos
             else { minAge = 50; maxAge = 85; } // Adultos mayores
 
@@ -204,10 +204,10 @@ async function seedDatabase() {
             const pIdx = faker.number.int({ min: 0, max: pacientesIds.length - 1 });
             let mIdx = faker.number.int({ min: 0, max: medicosIds.length - 1 });
             
-            // Si el paciente es niño, priorizamos que vaya a pediatría
+            // Si el paciente es nino, priorizamos que vaya a pediatria
             const age = new Date().getFullYear() - pacientesNacimiento[pIdx].getFullYear();
             if (age < 18 && faker.number.int({min:1, max:10}) > 2) {
-                // Forzar pediatra (índice especialidad 2)
+                // Forzar pediatra (indice especialidad 2)
                 const pediatras = medicosIds.map((id, idx) => medicoEspecialidadIds[idx] === 2 ? idx : -1).filter(i => i !== -1);
                 if (pediatras.length > 0) mIdx = faker.helpers.arrayElement(pediatras);
             }
@@ -252,14 +252,14 @@ async function seedDatabase() {
         }
 
         console.log(`Generando ${atendidaCitas.length} historiales clínicos reales en MongoDB...`);
-        // Queremos exactamente 150 historiales (uno por cada cita atendida, limitamos a 150 si hay más)
+        // Queremos exactamente 150 historiales (uno por cada cita atendida, limitamos a 150 si hay mas)
         const totalHistoriales = Math.min(150, atendidaCitas.length);
 
         for (let i = 0; i < totalHistoriales; i++) {
             const especialidadNombre = atendidaCitasEspecialidad[i];
             const catalogoEsp = datosPorEspecialidad[especialidadNombre];
             
-            // Elegir entre 1 y 2 diagnósticos de esa especialidad
+            // Elegir entre 1 y 2 diagnosticos de esa especialidad
             const diags = faker.helpers.arrayElements(catalogoEsp.diagnosticos, faker.number.int({min:1, max:2})).map(d => ({
                 codigo_cie10: d.c,
                 descripcion: d.d,
@@ -269,7 +269,7 @@ async function seedDatabase() {
             // Elegir entre 1 y 3 medicamentos de esa especialidad
             const meds = faker.helpers.arrayElements(catalogoEsp.medicamentos, faker.number.int({min:1, max:3}));
 
-            // Variar signos vitales según la edad
+            // Variar signos vitales segun la edad
             const age = new Date().getFullYear() - atendidaNacimientosPacientes[i].getFullYear();
             let pSis, pDia, fCar;
             if (age < 18) {

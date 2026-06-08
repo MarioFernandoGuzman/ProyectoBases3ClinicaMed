@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 async function iniciar() {
   try {
-    // Verificar conexión a PostgreSQL
+    // Verificar conexion a PostgreSQL
     const pgClient = await pool.connect();
     console.log('PostgreSQL conectado');
     pgClient.release();

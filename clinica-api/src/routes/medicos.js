@@ -5,7 +5,7 @@ const router = Router();
 
 /**
  * GET /api/medicos/:id/disponibilidad?fecha=YYYY-MM-DD
- * Ejecuta la función tabla disponibilidad_medico().
+ * Ejecuta la funcion tabla disponibilidad_medico().
  */
 router.get('/:id/disponibilidad', async (req, res) => {
   const medicoId = parseInt(req.params.id, 10);
@@ -47,7 +47,7 @@ router.get('/:id/disponibilidad', async (req, res) => {
 
 /**
  * GET /api/medicos
- * Retorna todos los médicos (para los dropdowns).
+ * Retorna todos los medicos (para los dropdowns).
  */
 router.get('/', async (req, res) => {
   try {

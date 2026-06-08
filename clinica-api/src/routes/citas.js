@@ -42,7 +42,7 @@ router.post('/:id/cancelar', async (req, res) => {
 
 /**
  * GET /api/citas/agenda-diaria?fecha=YYYY-MM-DD
- * RC-01: Agenda diaria (Citas del día con paciente, médico, hora y estado)
+ * RC-01: Agenda diaria (Citas del dia con paciente, medico, hora y estado)
  */
 router.get('/agenda-diaria', async (req, res) => {
   const { fecha } = req.query;
@@ -80,7 +80,7 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    // Validar RN-03: No más de una cita por paciente con el mismo médico el mismo día
+    // Validar RN-03: No mas de una cita por paciente con el mismo medico el mismo dia
     const rn03 = await pool.query(
       "SELECT 1 FROM citas WHERE paciente_id = $1 AND medico_id = $2 AND fecha = $3 AND estado IN ('programada', 'confirmada')",
       [paciente_id, medico_id, fecha]
@@ -89,7 +89,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'El paciente ya tiene una cita activa con este médico en esta fecha (RN-03)' });
     }
 
-    // Validar RN-01 y RN-02 usando la función de disponibilidad
+    // Validar RN-01 y RN-02 usando la funcion de disponibilidad
     const disp = await pool.query(
       'SELECT disponible FROM disponibilidad_medico($1, $2) WHERE hora_inicio = $3 AND hora_fin = $4',
       [medico_id, fecha, hora_inicio, hora_fin]

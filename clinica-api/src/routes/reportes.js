@@ -42,7 +42,7 @@ router.get('/ranking-medicos', async (_req, res) => {
 
 /**
  * GET /api/reportes/facturas-pendientes
- * RC-02: Facturas pendientes (ordenadas por antigüedad)
+ * RC-02: Facturas pendientes (ordenadas por antiguedad)
  */
 router.get('/facturas-pendientes', async (_req, res) => {
   try {

@@ -4,7 +4,7 @@ const pool = require('../db/postgres');
 
 /**
  * GET /api/dashboard/stats
- * Devuelve métricas reales para el dashboard
+ * Devuelve metricas reales para el dashboard
  */
 router.get('/stats', async (req, res) => {
   try {
